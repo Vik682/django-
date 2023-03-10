@@ -293,6 +293,8 @@ class MenuItemDeleteView(APIView):
 
         menu_item.delete()
 
+        cache.delete(CACHE_CONSTANTS['MESS_MENU'])
+
         return Response(status = 200, data = {
             'msg': 'Deleted Successfully'
         })
