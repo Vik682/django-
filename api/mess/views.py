@@ -23,7 +23,7 @@ class MessMenuAPI(APIView):
 
         for day in weekdays:
             data[day.name] = {}
-            for slot in MenuSlot.objects.all():
+            for slot in MenuSlot.objects.all().order_by('created_at'):
                 data[day.name][slot.name] = MessMenuSerializer(
                     MessMenu.objects.filter(slot=slot, weekdays=day).first()).data
 
